@@ -10,7 +10,17 @@ You are welcome to add fields to any of these schemas as you see fit, but do not
 
 This repository is a template repository. The first thing you should do is create a new repository using this template and give your teammates collaborator access to that new repository.
 
-You will be provided a database URL. Reference `example.env` to see what your `.env` file should look like. Create your own `.env` file and paste in your database URL as a value to the key of `DB_URL`. Keep in mind that this URL should **not** be exposed to GitHub in any of your files. All references to the database URL should occur through `dbUrl` in `utils/consts.js`.
+Go ahead and clone the new repository to your local machine.
+
+You will be provided a database URL. Reference `example.env` to see what your `.env` file should look like. Create your own `.env` file and paste in your database URL as a value to the key of `DB_URL`. Keep in mind that this URL should **not** be exposed to GitHub in any of your files. All references to the database URL should occur through `dbUrl` in `utils/consts.js`. All groups will be assigned its own database, meaning that groups will have distinct database URLs.
+
+At this point, you should run
+
+```
+npm install
+```
+
+in the root directory of the repository to install all required dependencies.
 
 ## Feature Requirements
 
@@ -18,7 +28,7 @@ To replicate development cycles within BoG project teams, we have written out **
 
 ## Visualizing Your Database Collections
 
-If you'd like to use a GUI to visualize documents in your database, download [MongoDB Compass](https://www.mongodb.com/products/compass) and use your provided database URL to connect to your database.
+If you'd like to use a GUI to visualize documents in your database, download [MongoDB Compass](https://www.mongodb.com/try/download/compass) and use your provided database URL to connect to your database.
 
 ## Troubleshooting Your Database
 

@@ -4,7 +4,7 @@ Context: Comments only matter if the user can see them. What kind of user would 
 
 Blockers:
 
-- This ticket cannot be completed until you have implemented reading Posts (ticket #2) since you will be modifying the API call you made in that ticket
+- This ticket cannot be completed until you have implemented reading Posts (ticket #2) since you will be modifying the API call you made in that ticket. You need to fetch all the comments associated with a post.
 
 What you need to implement:
 

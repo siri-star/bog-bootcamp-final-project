@@ -1,4 +1,4 @@
-## Posts - Create and Read
+## Posts - Create and read (from DB) posts
 
 Context: Implement the ability to create new posts. Feel free to add this functionality any way you'd like, whether that be through a popup modal or through a navigation to another screen. Each post should be viewable through their own individual route.
 

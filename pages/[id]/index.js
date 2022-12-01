@@ -21,6 +21,11 @@ export default function Post() {
       });
   }, []);
 
+  const saveChanges = () => {
+    setPost(post);
+    setEdit(false);
+    console.log(post);
+}
   const onEdit = () => {
     setEdit(!edit);
 }
@@ -33,6 +38,7 @@ export default function Post() {
     <h2 contentEditable={edit}>{post.body}</h2>
     <p>{new Date(post.date).toUTCString()}</p>
     <button onClick={onEdit}>Edit Post</button>
+    <button onClick={saveChanges}>Save Changes</button>
     {comments.map(comment => {
       return <p>{comment.body}</p>;
     })}

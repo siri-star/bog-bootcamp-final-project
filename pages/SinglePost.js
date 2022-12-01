@@ -7,11 +7,14 @@ import { useRouter } from "next/router";
 function SinglePost() {
     const [edit, setEdit] = useState(false);
     const [comments, setComments] = useState([]);
-    const [posts, setPosts] = useState([]);
+    const [posts, setPost] = useState([]);
     const router = useRouter();
 
     const onEdit = () => {
         setEdit(!edit);
+    }
+    const saveChanges = () => {
+        setPost(posts);
     }
     const addComment = () => {
         comments.unshift({})
@@ -33,6 +36,10 @@ function SinglePost() {
             <p style={{fontSize:15}}>{posts.date}</p>
             <p contentEditable={edit} style={{fontSize:22}}>{posts.body}</p>
             <button onClick={onEdit}>Edit Post</button>
+
+            <button onClick={saveChanges}>Save Changes</button>
+            <button onClick={onEdit}>Cancel Changes</button>
+
             <button onClick={onEdit}>Delete Post</button>
             <p style={{backgroundColor:"#151515"}}>Comments</p>
             <button onClick={onEdit}>Add Comment</button>

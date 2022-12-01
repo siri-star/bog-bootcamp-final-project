@@ -22,8 +22,18 @@ export default function Post() {
       });
   }, []);
 
-  const saveBody = (text) => {
-    post.body = text;
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/getComments`, {
+      method: "POST",
+      body: id,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setComments(data);
+      });
+  }, []);
+
+  const saveChanges = () => {
     setPost(post);
     setEdit(false);
     fetch('http://localhost:3000/api/editPost', {
@@ -60,15 +70,15 @@ export default function Post() {
     <h2 id="body" contentEditable={edit}>{post.body}</h2>
     <p>{new Date(post.date).toUTCString()}</p>
     <button onClick={onEdit}>Edit Post</button>
-    <button onClick={() => saveBody(document.getElementById("body").innerText)}>Save Changes</button>
-    {comments.map(comment => {
-      return <p>{comment.body}</p>;
-    })}
+    <button onClick={saveChanges}>Save Changes</button>
     <button onClick = {e => {
       fetch("http://localhost:3000/api/deletePost", {
         method: "DELETE",
         body: post._id
       });
-    }}>delete</button>
+    }}>Delete Post</button>
+    {comments.map(comment => {
+      return <p>{comment.body}</p>;
+    })}
   </div>);
 }

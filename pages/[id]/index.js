@@ -33,9 +33,11 @@ export default function Post() {
       });
   }, []);
 
-  const saveChanges = () => {
+  const saveBody = (text) => {
+    post.body = text;
     setPost(post);
     setEdit(false);
+    console.log(post)
     fetch('http://localhost:3000/api/editPost', {
       method: "POST",
       body: JSON.stringify({
@@ -70,7 +72,7 @@ export default function Post() {
     <h2 id="body" contentEditable={edit}>{post.body}</h2>
     <p>{new Date(post.date).toUTCString()}</p>
     <button onClick={onEdit}>Edit Post</button>
-    <button onClick={saveChanges}>Save Changes</button>
+    <button onClick={() => saveBody(document.getElementById("body").innerText)}>Save Changes</button>
     <button onClick = {e => {
       fetch("http://localhost:3000/api/deletePost", {
         method: "DELETE",

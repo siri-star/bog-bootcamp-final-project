@@ -6,6 +6,7 @@ export default function Post() {
   const router = useRouter();
   const { id } = router.query;
 
+  const [edit, setEdit] = useState(false);
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
 
@@ -20,12 +21,16 @@ export default function Post() {
       });
   }, []);
 
+  const onEdit = () => {
+    setEdit(!edit);
+}
+
   // TODO: return to main view once deleted 
   // TODO: edit button!
   // TODO: comments
   return(<div>
     <h1>{post.title}</h1>
-    <h2>{post.body}</h2>
+    <h2 contentEditable={edit}>{post.body}</h2>
     <p>{new Date(post.date).toUTCString()}</p>
     {comments.map(comment => {
       return <p>{comment.body}</p>;

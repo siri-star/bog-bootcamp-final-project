@@ -21,6 +21,17 @@ export default function Post() {
       });
   }, []);
 
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/getComments`, {
+      method: "POST",
+      body: id,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setComments(data);
+      });
+  }, []);
+
   const saveChanges = () => {
     setPost(post);
     setEdit(false);
@@ -39,14 +50,14 @@ export default function Post() {
     <p>{new Date(post.date).toUTCString()}</p>
     <button onClick={onEdit}>Edit Post</button>
     <button onClick={saveChanges}>Save Changes</button>
-    {comments.map(comment => {
-      return <p>{comment.body}</p>;
-    })}
     <button onClick = {e => {
       fetch("http://localhost:3000/api/deletePost", {
         method: "DELETE",
         body: post._id
       });
-    }}>delete</button>
+    }}>Delete Post</button>
+    {comments.map(comment => {
+      return <p>{comment.body}</p>;
+    })}
   </div>);
 }

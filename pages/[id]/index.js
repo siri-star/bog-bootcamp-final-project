@@ -32,6 +32,7 @@ export default function Post() {
     <h1>{post.title}</h1>
     <h2 contentEditable={edit}>{post.body}</h2>
     <p>{new Date(post.date).toUTCString()}</p>
+    <button onClick={onEdit}>Edit Post</button>
     {comments.map(comment => {
       return <p>{comment.body}</p>;
     })}

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const router = useRouter();
@@ -22,13 +23,13 @@ export default function Home() {
   // (2) comments should only be viewable from individual post view (maybe body too?)
   // (3) pagination
   return (
-    <div className={styles.container}>
+    <div style={{backgroundColor:"black"}}className={styles.container}>
       {posts.map(post => {
       return(<div>
         <h1 style={{fontFamily:"AvenirLTStd", fontWeight:"600", color:"#E3E3E3"}}><Link href={`/${post._id}`}>{post.title}</Link></h1>
-        <h2 style={{fontFamily:"AvenirLTStd", fontWeight:"300", backgroundColor:"#303030", border:"cyan"}}>{post.body}</h2>
+        <h2 class="border" style={{color:"#E3E3E3", fontFamily:"AvenirLTStd", fontWeight:"300"}}>{post.body}</h2>
         <div id = "row">
-          <p style={{color:"#E3E3E3"}}>{post.comments.length} comments</p>
+          <p style={{color:"#E3E3E3", backgroundColor:"#303030"}}>{post.comments.length} comments</p>
           <p style={{color:"#E3E3E3"}}>{new Date(post.date).toUTCString()}</p>
           <button onClick = {e => {
             fetch("http://localhost:3000/api/deletePost", {

@@ -65,11 +65,11 @@ export default function Post() {
   // TODO: return to main view once deleted 
   // TODO: edit button!
   // TODO: comments
-  return(<div>
+  return(<div style={{backgroundColor:"black"}}>
     <h1 style={{fontFamily:"AvenirLTStd", fontWeight:"600", color:"#E3E3E3"}} contentEditable = {edit} id="title" >{post.title}</h1>
     <button onClick={onEdit}>Edit Title</button>
     <button onClick={() => saveTitle(document.getElementById("title").innerText)}>Save Changes</button>
-    <h2 style={{fontFamily:"AvenirLTStd", fontWeight:"300", backgroundColor:"#303030", border:"cyan"}} id="body" contentEditable={edit}>{post.body}</h2>
+    <h2 style={{color:"#E3E3E3", fontFamily:"AvenirLTStd", fontWeight:"300"}} id="body" contentEditable={edit}>{post.body}</h2>
     <p style={{color:"#E3E3E3"}}>{new Date(post.date).toUTCString()}</p>
     <button onClick={onEdit}>Edit Post</button>
     <button onClick={() => saveBody(document.getElementById("body").innerText)}>Save Changes</button>
@@ -79,6 +79,8 @@ export default function Post() {
         body: post._id
       });
     }}>Delete Post</button>
+    <p style={{color:"#E3E3E3", backgroundColor:"#303030"}}>Comments</p>
+    <button>Add Comment</button>
     {comments.map(comment => {
       return (
       <div>

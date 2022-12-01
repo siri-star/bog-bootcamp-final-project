@@ -9,6 +9,7 @@ export default function Post() {
   const [edit, setEdit] = useState(false);
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
+  
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/getPost`, {
@@ -21,11 +22,30 @@ export default function Post() {
       });
   }, []);
 
-  const saveChanges = () => {
+  const saveBody = (text) => {
+    post.body = text;
     setPost(post);
     setEdit(false);
-    console.log(post);
+    fetch('http://localhost:3000/api/editPost', {
+      method: "POST",
+      body: JSON.stringify({
+        id: post._id,
+        newPost: post
+      })
+    });
 }
+  const saveTitle = (text) => {
+    post.title = text;
+    setPost(post);
+    setEdit(false);
+    fetch('http://localhost:3000/api/editPost', {
+      method: "POST",
+      title: JSON.stringify({
+        id: post._id,
+        newPost: post
+      })
+    });
+  }
   const onEdit = () => {
     setEdit(!edit);
 }
@@ -34,11 +54,13 @@ export default function Post() {
   // TODO: edit button!
   // TODO: comments
   return(<div>
-    <h1>{post.title}</h1>
-    <h2 contentEditable={edit}>{post.body}</h2>
+    <h1 contentEditable = {edit} id="title" >{post.title}</h1>
+    <button onClick={onEdit}>Edit Title</button>
+    <button onClick={() => saveTitle(document.getElementById("title").innerText)}>Save Changes</button>
+    <h2 id="body" contentEditable={edit}>{post.body}</h2>
     <p>{new Date(post.date).toUTCString()}</p>
     <button onClick={onEdit}>Edit Post</button>
-    <button onClick={saveChanges}>Save Changes</button>
+    <button onClick={() => saveBody(document.getElementById("body").innerText)}>Save Changes</button>
     {comments.map(comment => {
       return <p>{comment.body}</p>;
     })}

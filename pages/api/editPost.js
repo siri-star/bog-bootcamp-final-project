@@ -5,7 +5,7 @@ function handler(req, res) {
 }
 
 async function editPost(req, res) {
-  const post = await updatePost(req.bod.id, req.body.newPost);
+  const post = await updatePost(req.body.id, req.body.newPost);
   res.status(200).json(post);
 }
 

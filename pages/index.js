@@ -16,12 +16,17 @@ export default function Home() {
       });
   }, []);
 
+  // notes:
+  // (1) move delete (and edit) button to individual post view 
+  // (2) comments should only be viewable from individual post view (maybe body too?)
   return (
     <div className={styles.container}>
       {posts.map(post => {
       return(<div>
         <h1>{post.title}</h1>
-        <p>{post.body}</p>
+        <h2>{post.body}</h2>
+        <p>{post.comments.length} comments</p>
+        <p>{new Date(post.date).toUTCString()}</p>
         <button onClick = {e => {
           fetch("http://localhost:3000/api/deletePost", {
             method: "DELETE",

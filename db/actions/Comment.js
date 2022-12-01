@@ -1,20 +1,14 @@
 import Comment from "../models/Comment";
+import Post from "../models/Comment";
 import dbConnect from "../dbConnect";
 
-async function findCommentsByPost(id) {
+async function findCommentsByPost(postId) {
     await dbConnect();
-    const postCommentIds = await Post.findById(id).comments; // sorted by date
-    const allComments = await Comment.find({}).sort({ date: -1 }); // sorted by date
-    const comments = [];
-    // TODO: replace with innerjoin?
-    var postCommentIdCounter = 0;
-    for (var allCommentsCounter = 0; postCommentIdCounter < postCommentIds.length; allCommentsCounter++) {
-        if (postCommentIds[postCommentIdCounter].toString() == allComments[allCommentsCounter]._id.toString()) {
-            comments.push(allComments[allCommentsCounter]);
-            postCommentIdCounter++;
-        }
-    }
-    return comments;
+    const post = await Post.findById(postId);
+    const output = await Comment.find({ _id: { $in: post.comments } }).sort({
+      date: -1,
+    });
+    return output;
 }
 
 export { findCommentsByPost };

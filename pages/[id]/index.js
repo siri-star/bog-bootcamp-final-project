@@ -20,17 +20,6 @@ export default function Post() {
       });
   }, []);
 
-  useEffect(() => {
-    fetch(`http://localhost:3000/api/getComments`, {
-      method: "POST",
-      body: post,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setComments(data);
-      });
-  }, []);
-
   // TODO: return to main view once deleted 
   // TODO: edit button!
   // TODO: comments

@@ -25,17 +25,20 @@ export default function Home() {
     <div className={styles.container}>
       {posts.map(post => {
       return(<div>
-        <h1><Link href={`/${post._id}`}>{post.title}</Link></h1>
-        <h2>{post.body}</h2>
-        <p>{post.comments.length} comments</p>
-        <p>{new Date(post.date).toUTCString()}</p>
-        <button onClick = {e => {
-          fetch("http://localhost:3000/api/deletePost", {
-            method: "DELETE",
-            body: post._id
-          });
-          setPosts(posts.filter(p => p.title != post.title));
-        }}>delete</button>
+        <h1 style={{fontFamily:"AvenirLTStd", fontWeight:"600", color:"#E3E3E3"}}><Link href={`/${post._id}`}>{post.title}</Link></h1>
+        <h2 style={{fontFamily:"AvenirLTStd", fontWeight:"300", backgroundColor:"#303030", border:"cyan"}}>{post.body}</h2>
+        <div id = "row">
+          <p style={{color:"#E3E3E3"}}>{post.comments.length} comments</p>
+          <p style={{color:"#E3E3E3"}}>{new Date(post.date).toUTCString()}</p>
+          <button onClick = {e => {
+            fetch("http://localhost:3000/api/deletePost", {
+              method: "DELETE",
+              body: post._id
+            });
+            setPosts(posts.filter(p => p.title != post.title));
+          }}>Delete</button>
+        </div>
+        <hr></hr>
       </div>);
       })}
     </div>

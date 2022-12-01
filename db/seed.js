@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config({ path: 'local.env' });
 import Post from "./models/Post";
 import Comment from "./models/Comment";
 import { faker } from "@faker-js/faker";

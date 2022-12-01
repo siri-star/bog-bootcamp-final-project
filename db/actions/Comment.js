@@ -7,8 +7,8 @@ async function findCommentsByPost(id) {
     const allComments = await Comment.find({}).sort({ date: -1 }); // sorted by date
     const comments = [];
     // TODO: replace with innerjoin?
-    const postCommentIdCounter = 0;
-    for (const allCommentsCounter = 0; postCommentIdCounter < postCommentIds.length; allCommentsCounter++) {
+    var postCommentIdCounter = 0;
+    for (var allCommentsCounter = 0; postCommentIdCounter < postCommentIds.length; allCommentsCounter++) {
         if (postCommentIds[postCommentIdCounter].toString() == allComments[allCommentsCounter]._id.toString()) {
             comments.push(allComments[allCommentsCounter]);
             postCommentIdCounter++;

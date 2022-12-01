@@ -24,6 +24,7 @@ export default function Home() {
   // (3) pagination
   return (
     <div style={{backgroundColor:"black"}}className={styles.container}>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
       {posts.map(post => {
       return(<div>
         <h1 style={{fontFamily:"AvenirLTStd", fontWeight:"600", color:"#E3E3E3"}}><Link href={`/${post._id}`}>{post.title}</Link></h1>
@@ -37,7 +38,7 @@ export default function Home() {
               body: post._id
             });
             setPosts(posts.filter(p => p.title != post.title));
-          }}>Delete</button>
+          }}><i class="fa fa-trash"></i> Delete Post</button>
         </div>
         <hr></hr>
       </div>);

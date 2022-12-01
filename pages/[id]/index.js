@@ -66,6 +66,7 @@ export default function Post() {
   // TODO: edit button!
   // TODO: comments
   return(<div style={{backgroundColor:"black"}}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
     <h1 style={{fontFamily:"AvenirLTStd", fontWeight:"600", color:"#E3E3E3"}} contentEditable = {edit} id="title" >{post.title}</h1>
     <button onClick={onEdit}>Edit Title</button>
     <button onClick={() => saveTitle(document.getElementById("title").innerText)}>Save Changes</button>
@@ -78,9 +79,8 @@ export default function Post() {
         method: "DELETE",
         body: post._id
       });
-    }}>Delete Post</button>
+    }}><i class="fa fa-trash"></i> Delete Post</button>
     <p style={{color:"#E3E3E3", backgroundColor:"#303030"}}>Comments</p>
-    <button>Add Comment</button>
     {comments.map(comment => {
       return (
       <div>
